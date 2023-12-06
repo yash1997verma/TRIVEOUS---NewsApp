@@ -16,7 +16,7 @@ export default  function Home() {
       }
 
       {newsStatus === 'success' &&
-        <div className="">
+        <div className="p-2">
         {news.map((newsItem, index)=>(
           <NewsComponent key={index} newsItem={newsItem} />
         ))}
