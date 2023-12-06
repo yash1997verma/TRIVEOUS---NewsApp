@@ -25,7 +25,7 @@ export default function SignIn({ onLogin }){
             const auth = getAuth();
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             if(userCredential.user){
-                navigate('/home');
+                navigate('/privateRoutes/home');
             }
             toast.success("Signed In Successfully");
             } catch (error) {

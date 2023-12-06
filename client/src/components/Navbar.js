@@ -1,11 +1,20 @@
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
+import { useAuthStatus } from '../hooks/useAuthStatus';
+import { getAuth } from 'firebase/auth';
 export default function Navbar() {
-    const location = useLocation();
-
-   
+    const {loggedIn, checkingStatus} = useAuthStatus();
+    const auth = getAuth();
+    const navigate = useNavigate();
+    const handleSignInSignOut =()=>{
+        if(loggedIn){
+            auth.signOut();
+        }
+        navigate('/signIn');
+        
+    }
   return (
     <>
         <div className='bg-white border-b-2 w-full shadow-md h-fit flex justify-between items-center px-4 py-4'>
@@ -24,7 +33,9 @@ export default function Navbar() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                 </svg>
             </Link>
-            <Link to='/signIn' className=' bg-blue-500 text-white p-2 rounded-md  text-sm  rounded-sm font-sans font-bold ml-3'>Sign In</Link>
+            <div onClick={handleSignInSignOut}  className='cursor-pointer select-none bg-blue-500 text-white p-2 rounded-md  text-sm  rounded-sm font-sans font-bold ml-3'>
+                {loggedIn ? 'Sign Out': 'Sign In' }
+            </div>
           
             </div>
         </div>

@@ -1,7 +1,10 @@
 import './App.css';
+//redux store
+import store from './store';
+import { Provider } from 'react-redux';
 //react router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import {PrivateRoute} from './components/PrivateRoute';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
@@ -23,13 +26,21 @@ function App() {
           element: <LandingPage />
         },
         {
-          path: '/home',
-          element: <Home />,
+          path :'/privateRoutes',
+          element:<PrivateRoute />,
+          children:[
+            {
+              path: 'profile',
+              element: <Profile />,
+            },
+            {
+              path: 'home',
+              element: <Home />,
+            },
+          ]
         },
-        {
-          path: '/profile',
-          element: <Profile />,
-        },
+       
+        
         {
           path: '/signIn',
           element: <SignIn />,
@@ -48,9 +59,11 @@ function App() {
 
   return (
     <>
-
-      <RouterProvider router={router} />
-      <Toaster />
+      <Provider store = {store} >
+        <RouterProvider router={router} />
+        <Toaster />
+      </Provider>
+     
     </>
     
   );
