@@ -1,14 +1,9 @@
 import React from 'react'
 
 export default function NewsComponent({newsItem}) {
-    // console.log(newsItem)
-    const convertDate = (date)=>{
-        const updatedDate = new Date(date);
-        console.log(updatedDate);
-        return updatedDate;
-    }
+    
     return (
-    <div className='relative  flex items-center shadow-md  border border-slate-200 my-6 w-full h-[100px] md:h-[260px] mx-auto md:w-[500px]  lg:w-[700px] rounded-md p-2 md:p-4 lg:p-6  '>
+    <div className='relative cursor-pointer flex items-center shadow-md  border border-slate-200 my-6 w-full h-[100px] md:h-[260px] mx-auto md:w-[500px]  lg:w-[700px] rounded-md p-2 md:p-4 lg:p-6  '>
         <div>
             <img className='w-[100px] h-fit md:w-200px lg:w-[300px] shadow-md rounded-md' src={newsItem.urlToImage} alt="" />
         </div>

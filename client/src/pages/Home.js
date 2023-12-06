@@ -8,7 +8,11 @@ export default  function Home() {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getNewsAsync());
-  },[])
+  },[]);
+
+  const openArticle = ()=>{
+    console.log('hello')
+  }
   return (
     <>
       {newsStatus === 'pending'&&
@@ -18,7 +22,7 @@ export default  function Home() {
       {newsStatus === 'success' &&
         <div className="p-2">
         {news.map((newsItem, index)=>(
-          <NewsComponent key={index} newsItem={newsItem} />
+          <NewsComponent onClick={openArticle} key={index} newsItem={newsItem} />
         ))}
         </div>
       }

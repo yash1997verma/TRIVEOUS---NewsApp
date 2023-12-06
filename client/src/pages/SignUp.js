@@ -31,7 +31,7 @@ export default function SignUp(){
             const userData = {name:username, email, timestamp: serverTimestamp()};
             await setDoc(doc(db,"users", user.uid), userData);
             //navigate to home
-            navigate('/home');
+            navigate('/privateRoutes/home');
             toast.success("Signed Up Successfully");
         } catch (error) {
             console.log(error);
